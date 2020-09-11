@@ -7,19 +7,22 @@ class Price extends React.Component {
   }
   changeCurrency = () => {
     let { price } = this.state;
-       if (price[price.length - 1] === '$') {
-      price = `${Number(price.slice(0, -1)) * 487} ֏`;
-         this.setState({ price });
-       } else {
-        price = `${Number(price.slice(0, -1)) / 487} $`;
-         this.setState({ price });  
+    if (price[price.length - 1] === "$") {
+      // price = `${Number(price.slice(0, -1)) * 487} ֏`;
+      price = parseFloat(price) * 487 + '֏';
+      this.setState({ price });
+    } else {
+      price = `${Number(price.slice(0, -1)) / 487}$`;
+      this.setState({ price });
     }
-};
+  };
   render() {
-    return <div>
-      <span>{this.state.price}</span>
-      <button onClick={this.changeCurrency}>Change the currency</button>
-    </div>;
+    return (
+      <div>
+        <span>{this.state.price}</span>
+        <button onClick={this.changeCurrency}>Change the currency</button>
+      </div>
+    );
   }
 }
 
